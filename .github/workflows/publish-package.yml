@@ -18,11 +18,6 @@ jobs:
             - run: npm install
             - run: npm run test
             - run: npm run build
-            - name: Get short commit hash
-              id: commit_hash
-              run: echo "::set-output name=hash::$(echo ${GITHUB_SHA::8})"
-            - name: Set package version
-              run: npm version ${{ steps.commit_hash.outputs.hash }}
             - run: npm publish
               env:
-                  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
